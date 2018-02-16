@@ -1,4 +1,4 @@
-      var asciiArtArrays = [[
+      var asciiArtArrays = [
       "                 |_______________``",
       "                  [/]           [  ]",
       "                  [\]           | ||",
@@ -29,7 +29,8 @@
       "              |___| |___| " ,
       "              |###/ \###| ",
       "              \##/   \##/ ",
-      "               ``     ``"],
+      "               ``     ``"];
+
       var words = ['PIE', 'CAKE', 'ICECREAM', 'COOKIE', 'BROWNIE', 'CHOCOLATE', 'CHEESECAKE', 'CANNOLI'];
       var numberOfGuesses = 6;
       var word;
@@ -40,7 +41,7 @@
       var startGame = function(word){
         word = getRandomWord();
         WordWithGuesses = getBlankedWord();
-        updateLetterGuessedCorrectly(blankedWordWithGuesses);
+        updateWordWithGuesses(WordWithGuesses);
         listenForKeyPress();
       };
 
@@ -141,7 +142,7 @@
         return lettersGuessed.indexOf(letter) > -1;
       };
 
-      var handleLetterAlreadyChosen = function()
+      var handleLetterAlreadyChosen = function(){
       };
       
       var handleWin = function(){
@@ -161,4 +162,4 @@
         }
       };
       startGame();
-    </script>
+    
