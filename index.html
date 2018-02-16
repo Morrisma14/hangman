@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Hangman Game!</title>
+
+    <!-- Boostrap Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Our own CSS stylesheet -->
+    <style type="text/css" src=assets/style.css>
+      h2#correct-guesses {
+          letter-spacing: .8em;
+          font-size: 36px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+        <h1>Dessert Hangman</h1> 
+        <p>Would you kill for some dessert?</p> 
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <aside id="incorrect-guesses"></aside>
+            <h2 id="correct-guesses">_ _ _ _ _ _</h2>
+          </div>
+          <div class="col-md-6">
+            <pre id="hangman-art">
+               ___________.._______
+              | .__________))______|
+              | | / /      ||
+              | |/ /       ||
+              | | /        ||.-''.
+              | |/         |/  _  \
+              | |          ||  `/,|
+              | |          (\\`_.'
+              | |         .-`--'.
+              | |        /Y . . Y\
+              | |       // |   | \\
+              | |      //  | . |  \\
+              | |     ')   |   |   (`
+              | |          ||'||
+              | |          || ||
+              | |          || ||
+              | |          || ||
+              | |         / | | \
+              """"""""""|_`-' `-' |"""|
+              |"|"""""""\ \       '"|"|
+              | |        \ \        | |
+              : :         \ \       : :  
+              . .          `'       . .
+            
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p>Press any key to start!</p> 
+      </div>
+    </div>
+    <script type="text/javascript" src="assets/javascript/game.js">
+    </script>
+  </body>
+  </html>
