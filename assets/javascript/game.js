@@ -33,17 +33,11 @@
 
       var words = ['PIE', 'CAKE', 'ICECREAM', 'COOKIE', 'BROWNIE', 'CHOCOLATE', 'CHEESECAKE', 'CANNOLI'];
       var numberOfGuesses = 6;
-      var word;
-      var WordWithGuesses;
-      var lettersGuessed;
-      var winCounter;
-
-      var startGame = function(word){
-        word = getRandomWord();
-        WordWithGuesses = getBlankedWord();
-        updateWordWithGuesses(WordWithGuesses);
-        listenForKeyPress();
-      };
+      var word= "";
+      var WordWithGuesses= "";
+      var lettersGuessed = [];
+      var winCounter= 0;
+      var alphabet = "abcdefghijklmnopqrstuvwxyz";
 
       var getRandomWord = function(){
         return words[Math.floor(Math.random() * words.length)];
@@ -54,29 +48,39 @@
         for (var i = 0; i < length; i++){
           result = result + "- ";
         }
-        return result.slice(-1, 0);
+        return result.slice(0, result.length - 2);
       };
 
-      var listenForKeyPress = function(){
-        document.onkeypress = handleKeyPress;
+      var updateWordWithGuesses = function(){
+        document.getElementById("correct-guesses").innerHTML = WordWithGuesses;
+        return;
       };
 
-      var checkLetter = function(letter, word){
+      var startGame = function(){
+        word = getRandomWord();
+        WordWithGuesses = getBlankedWord(word.length);
+        updateWordWithGuesses(WordWithGuesses);
+      };
+      
+      document.onkeypress = function(event){
+        handleKeyPress(event);
+      };
+
+      var checkLetter = function(letter){
         return word.indexOf(letter) > -1 && !checkLetterAlreadyChosen(letter);
       };
 
-      var updateWordWithGuesses = function(letter, word, WordWithGuesses){
-        return;
-      }
-      
       var handleKeyPress = function(event){
-        var guess = event.key;
+              var guess = event.key;
+              if (alphabet.indexOf(guess) === -1) {
+                return;
+              }
         if (checkLetter(guess)){
           handleCorrectLetter(guess, word, WordWithGuesses);
         }else{
-          handleIncorrectLetter(guess, word, WordWithGuesses)
+          handleIncorrectLetter(guess, word, WordWithGuesses);
         }
-      }
+      };
 
       var fillInGuesses = function(letter, word, WordWithGuesses){
         var str = WordWithGuesses;
@@ -92,15 +96,15 @@
       };
 
 
-      var handleCorrectLetter = function(letter, word, WordWithGuesses){
+      var handleCorrectLetter = function(){
         alert("You Guessed Correctly");
-        var result = updateWordWithGuesses(letter, word, WordWithGuesses);
+        var result = updateWordWithGuesses();
         updateLetters;
       }
 
       var handleIncorrectLetter = function(letter){
         alert("You Guessed Incorrectly");
-        lettersGuessed.push(guess);
+        lettersGuessed.push(letter);
         updatelettersGuessed(lettersGuessed.join(','));
         if (checkIfOutOfGuesses()){
           handleLoss();
@@ -109,7 +113,7 @@
         updateHangmanArt();
       };
 
-      var updateIncorrectGuesses = function(string){
+      var updatelettersGuessed = function(string){
         var element = document.getElementById("incorrect-guesses");
         element.innerHTML = string;
       };
@@ -119,19 +123,19 @@
       };
 
       var updateHangmanArt = function(){
-        var totalLines = asciiArtArray.length;
-        var percentage = lettersGuessedIncorrectly.length / numOfGuesses;
+        var totalLines = asciiArtArrays.length;
+        var percentage = lettersGuessed.length / numberOfGuesses;
         var linesToShow = Math.floor(totalLines * percentage);
         var art = '';
         for (var i = 0; i < linesToShow; i++){
-          art = art + asciiArtArray[i] +"\n";
+          art = art + asciiArtArrays[i] +"\n";
         }
         var element = document.getElementById('hangman-art');
         element.innerHTML = art;
       };
       
       var checkIfOutOfGuesses = function(){
-        return lettersGuessed.length > numberofGuesses;
+        return lettersGuessed.length > numberOfGuesses;
       };
 
       var checkIfWordIsComplete = function(string){
