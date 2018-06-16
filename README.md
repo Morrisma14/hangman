@@ -1,6 +1,8 @@
 # Dessert Hangman
 https://morrisma14.github.io/hangman/
 
+'A simple hangman game written in Javascript.'
+
 ## How To Use Dessert Hangman
 
 - Press any key to get started
